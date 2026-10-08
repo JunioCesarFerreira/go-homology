@@ -128,13 +128,13 @@ $$
 The $k$-cycles are the chains with no boundary, and the $k$-boundaries are the chains that are the boundary of something:
 
 $$
-Z_k = \ker \partial_k, \qquad B_k = \operatorname{im} \partial_{k+1}.
+Z_k = \ker \partial_k, \qquad B_k = \text{im } \partial_{k+1}.
 $$
 
 Since $\partial_k \circ \partial_{k+1} = 0$, every boundary is a cycle, so $B_k \subseteq Z_k$. The $k$-th homology group is the quotient
 
 $$
-H_k(K) = \frac{Z_k}{B_k} = \frac{\ker \partial_k}{\operatorname{im} \partial_{k+1}}.
+H_k(K) = \frac{Z_k}{B_k} = \frac{\ker \partial_k}{\text{im } \partial_{k+1}}.
 $$
 
 Intuitively, $H_k$ counts the $k$-dimensional cycles that do not bound anything: $H_0$ detects connected components, $H_1$ independent loops, and $H_2$ enclosed cavities.
@@ -152,10 +152,10 @@ The rank $\beta_k$ is the $k$-th Betti number, and the $t_i$ are the torsion coe
 For every integer matrix $A \in \mathbb{Z}^{m \times n}$ there are matrices $P \in GL_m(\mathbb{Z})$ and $Q \in GL_n(\mathbb{Z})$, that is, integer matrices with determinant $\pm 1$, such that
 
 $$
-PAQ = D = \operatorname{diag}(d_1, \dots, d_r, 0, \dots, 0), \qquad d_i > 0, \quad d_1 \mid d_2 \mid \cdots \mid d_r,
+PAQ = D = \text{diag}(d_1, \dots, d_r, 0, \dots, 0), \qquad d_i > 0, \quad d_1 \mid d_2 \mid \cdots \mid d_r,
 $$
 
-where $r = \operatorname{rank} A$. The $d_i$ are the invariant factors of $A$ and they are unique. $P$ and $Q$ are products of the elementary operations that are invertible over $\mathbb{Z}$: swapping two rows (or columns), adding an integer multiple of one row (or column) to another, and multiplying a row (or column) by $-1$. Unlike over a field, dividing a row by a number is not allowed.
+where $r = \text{rank }A$. The $d_i$ are the invariant factors of $A$ and they are unique. $P$ and $Q$ are products of the elementary operations that are invertible over $\mathbb{Z}$: swapping two rows (or columns), adding an integer multiple of one row (or column) to another, and multiplying a row (or column) by $-1$. Unlike over a field, dividing a row by a number is not allowed.
 
 `MatrixInt.SmithNormalForm` works on the diagonal positions $t = 0, 1, 2, \dots$ in turn:
 
@@ -168,10 +168,10 @@ The absolute value of the pivot never grows, and every nonzero remainder becomes
 
 ### From boundary matrices to homology
 
-Let $r_k = \operatorname{rank} \partial_k$, the number of nonzero invariant factors of $\partial_k$, with $r_0 = 0$ and $r_{n+1} = 0$. By rank–nullity,
+Let $r_k = \text{rank }\partial_k$, the number of nonzero invariant factors of $\partial_k$, with $r_0 = 0$ and $r_{n+1} = 0$. By rank–nullity,
 
 $$
-\operatorname{rank} Z_k = n_k - r_k, \qquad \operatorname{rank} B_k = r_{k+1},
+\text{rank }Z_k = n_k - r_k, \qquad \text{rank }B_k = r_{k+1},
 $$
 
 so the Betti numbers are
