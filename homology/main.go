@@ -3,11 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	S1()  // Circle S¹ → H_0=Z, H_1=Z
-	D2()  // Solid disk → H_0=Z
-	S2()  // Sphere S² → H_0=Z, H_2=Z
-	T2()  // Torus → H_0=Z, H_1=Z², H_2=Z
-	RP2() // Projective plane RP² → H_0=Z, H_1=Z/2
+	S1()    // Circle S¹ → H_0=Z, H_1=Z
+	D2()    // Solid disk → H_0=Z
+	S2()    // Sphere S² → H_0=Z, H_2=Z
+	T2()    // Torus → H_0=Z, H_1=Z², H_2=Z
+	RP2()   // Projective plane RP² → H_0=Z, H_1=Z/2
+	Klein() // Klein bottle → H_0=Z, H_1=Z⊕Z/2
 }
 
 func S1() {
@@ -60,6 +61,29 @@ func RP2() {
 	}
 	for _, f := range faces {
 		c.Add(NewSimplex(f[0], f[1], f[2]))
+	}
+	mostrarHomologia(c)
+}
+
+func Klein() {
+	fmt.Println("=== Garrafa de Klein (triangulação com 9 vértices) ===")
+	c := NewComplex()
+	// The Klein bottle is the square [0,3]×[0,3] with the bottom and top sides
+	// glued directly, (i, 3) ~ (i, 0), and the left and right sides glued with
+	// a flip, (3, j) ~ (0, 3-j). Splitting each unit square of the 3×3 grid
+	// into two triangles gives a 9-vertex triangulation.
+	// v maps the grid point (i, j), with 0 ≤ i, j ≤ 3, to its vertex label.
+	v := func(i, j int) int {
+		if i == 3 {
+			i, j = 0, 3-j
+		}
+		return 3*i + j%3
+	}
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			c.Add(NewSimplex(v(i, j), v(i+1, j), v(i+1, j+1)))
+			c.Add(NewSimplex(v(i, j), v(i, j+1), v(i+1, j+1)))
+		}
 	}
 	mostrarHomologia(c)
 }

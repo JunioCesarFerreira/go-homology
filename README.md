@@ -247,6 +247,8 @@ Filling in the triangle (the `D2` example) adds the 2-simplex $[0,1,2]$ with $\p
 
 In the 6-vertex triangulation of $\mathbb{RP}^2$ there is a loop $\gamma$ that is not the boundary of any 2-chain, while $2\gamma$ is. Its class therefore has order 2, and $H_1(\mathbb{RP}^2) \cong \mathbb{Z}/2$. In matrix terms, $\partial_2$ has rank $r_2 = 10$ and invariant factors $(1, \dots, 1, 2)$: nine 1s and a single 2. With $n_1 = 15$ and $r_1 = 5$, the Betti number is $\beta_1 = 15 - 5 - 10 = 0$, so $H_1$ is pure torsion. Since $\partial_2$ is injective, $H_2 = \ker \partial_2 = 0$. Rational or $\mathbb{Z}/p$ coefficients with $p$ odd cannot see this class at all, which is why the computation is done over $\mathbb{Z}$.
 
+The Klein bottle shows the same phenomenon alongside a free part. It has the same Euler characteristic as the torus, $\chi = 0$, but it is non-orientable, so $H_2 = 0$ and $H_1 \cong \mathbb{Z} \oplus \mathbb{Z}/2$ instead of $\mathbb{Z}^2$. In the 9-vertex triangulation, $r_1 = 8$ and $r_2 = 18$, so $\beta_1 = 27 - 8 - 18 = 1$, and the Smith normal form of $\partial_2$ again has a single invariant factor equal to 2.
+
 ## Bundled examples
 
 The expected homology of the complexes in [homology/main.go](homology/main.go):
@@ -258,6 +260,7 @@ The expected homology of the complexes in [homology/main.go](homology/main.go):
 | Sphere $S^2$ | `S2` | 4 | 6 | 4 | 2 | $\mathbb{Z}$ | $0$ | $\mathbb{Z}$ |
 | Torus $T^2$ | `T2` | 7 | 21 | 14 | 0 | $\mathbb{Z}$ | $\mathbb{Z}^2$ | $\mathbb{Z}$ |
 | Projective plane $\mathbb{RP}^2$ | `RP2` | 6 | 15 | 10 | 1 | $\mathbb{Z}$ | $\mathbb{Z}/2$ | $0$ |
+| Klein bottle | `Klein` | 9 | 27 | 18 | 0 | $\mathbb{Z}$ | $\mathbb{Z} \oplus \mathbb{Z}/2$ | $0$ |
 
 ## Limitations
 
