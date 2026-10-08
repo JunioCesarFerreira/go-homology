@@ -1,20 +1,20 @@
-# Construção da Homologia Simplicial
+# Building Simplicial Homology
 
-Dado um **complexo simplicial** $K$, a homologia simplicial é obtida construindo grupos de cadeias, operadores bordo e depois calculando quocientes entre ciclos e bordos.
+Given a **simplicial complex** $K$, simplicial homology is obtained by building chain groups and boundary operators, and then computing quotients of cycles by boundaries.
 
-O procedimento é este.
+The procedure goes as follows.
 
-### 1. Identifique os simplexos por dimensão
+### 1. Identify the simplices by dimension
 
-Separe os simplexos de $K$ em:
+Split the simplices of $K$ into:
 
 $$
-K_0=\{\text{vértices}\},\qquad
-K_1=\{\text{arestas}\},\qquad
-K_2=\{\text{triângulos}\},\ldots
+K_0=\{\text{vertices}\},\qquad
+K_1=\{\text{edges}\},\qquad
+K_2=\{\text{triangles}\},\ldots
 $$
 
-Por exemplo, suponha:
+For example, suppose:
 
 $$
 K_0=\{v_0,v_1,v_2\},
@@ -24,27 +24,27 @@ $$
 K_1=\{[v_0,v_1],[v_1,v_2],[v_0,v_2]\},
 $$
 
-e
+and
 
 $$
 K_2=\{[v_0,v_1,v_2]\}.
 $$
 
-Nesse caso temos um triângulo **preenchido**.
+In this case we have a **filled** triangle.
 
 ---
 
-### 2. Construa os grupos de cadeias $C_k(K)$
+### 2. Build the chain groups $C_k(K)$
 
-Para cada dimensão $k$, definimos
+For each dimension $k$, we define
 
 $$
 C_k(K;\mathbb F)
 $$
 
-como o espaço vetorial gerado pelos $k$-simplexos.
+as the vector space spanned by the $k$-simplices.
 
-Se trabalharmos sobre um corpo $\mathbb F$, por exemplo $\mathbb F_2$,
+If we work over a field $\mathbb F$, for example $\mathbb F_2$,
 
 $$
 C_k(K;\mathbb F_2)
@@ -52,7 +52,7 @@ C_k(K;\mathbb F_2)
 \operatorname{span}_{\mathbb F_2}(K_k).
 $$
 
-No exemplo:
+In the example:
 
 $$
 C_0 \cong \mathbb F_2^3,
@@ -66,7 +66,7 @@ $$
 C_2 \cong \mathbb F_2.
 $$
 
-Uma cadeia $1$-dimensional, por exemplo, tem a forma
+A $1$-dimensional chain, for example, has the form
 
 $$
 c=a_{01}[v_0,v_1]+a_{12}[v_1,v_2]+a_{02}[v_0,v_2].
@@ -74,15 +74,15 @@ $$
 
 ---
 
-### 3. Defina os operadores bordo
+### 3. Define the boundary operators
 
-Para cada $k$, definimos
+For each $k$, we define
 
 $$
 \partial_k:C_k\longrightarrow C_{k-1}.
 $$
 
-Sobre $\mathbb Z$, o bordo de um $k$-simplexo orientado é
+Over $\mathbb Z$, the boundary of an oriented $k$-simplex is
 
 $$
 \boxed{
@@ -94,9 +94,9 @@ $$
 }
 $$
 
-onde $\widehat{v_i}$ significa que $v_i$ é removido.
+where $\widehat{v_i}$ means that $v_i$ is omitted.
 
-Por exemplo:
+For example:
 
 $$
 \partial_1[v_0,v_1]
@@ -104,7 +104,7 @@ $$
 [v_1]-[v_0].
 $$
 
-E
+And
 
 $$
 \partial_2[v_0,v_1,v_2]
@@ -114,13 +114,13 @@ $$
 +[v_0,v_1].
 $$
 
-Se usarmos $\mathbb F_2$, os sinais desaparecem porque
+If we use $\mathbb F_2$, the signs disappear because
 
 $$
 -1=1\pmod 2.
 $$
 
-Então:
+So:
 
 $$
 \partial_2[v_0,v_1,v_2]
@@ -130,11 +130,11 @@ $$
 
 ---
 
-### 4. Monte as matrizes de bordo
+### 4. Assemble the boundary matrices
 
-Escolhendo bases para $C_k$ e $C_{k-1}$, cada $\partial_k$ vira uma matriz.
+Once bases are chosen for $C_k$ and $C_{k-1}$, each $\partial_k$ becomes a matrix.
 
-Por exemplo, para
+For example, for
 
 $$
 C_1=
@@ -143,7 +143,7 @@ e_{01},e_{12},e_{02}
 \rangle
 $$
 
-e
+and
 
 $$
 C_0=
@@ -152,7 +152,7 @@ v_0,v_1,v_2
 \rangle,
 $$
 
-sobre $\mathbb F_2$,
+over $\mathbb F_2$,
 
 $$
 \partial_1 e_{01}=v_0+v_1,
@@ -166,7 +166,7 @@ $$
 \partial_1 e_{02}=v_0+v_2.
 $$
 
-Portanto,
+Therefore,
 
 $$
 [\partial_1]
@@ -178,7 +178,7 @@ $$
 \end{pmatrix}.
 $$
 
-Para $\partial_2$,
+For $\partial_2$,
 
 $$
 \partial_2[v_0,v_1,v_2]
@@ -186,7 +186,7 @@ $$
 e_{01}+e_{12}+e_{02},
 $$
 
-logo
+so
 
 $$
 [\partial_2]
@@ -198,13 +198,13 @@ $$
 \end{pmatrix}.
 $$
 
-Essas matrizes são a parte computacional central da homologia simplicial.
+These matrices are the computational core of simplicial homology.
 
 ---
 
-### 5. Calcule os ciclos
+### 5. Compute the cycles
 
-Os $k$-ciclos são cadeias sem bordo:
+The $k$-cycles are the chains with no boundary:
 
 $$
 \boxed{
@@ -212,7 +212,7 @@ Z_k=\ker \partial_k
 }
 $$
 
-Isto é,
+That is,
 
 $$
 c\in Z_k
@@ -220,25 +220,25 @@ c\in Z_k
 \partial_k c=0.
 $$
 
-No exemplo, a cadeia
+In the example, the chain
 
 $$
 e_{01}+e_{12}+e_{02}
 $$
 
-é um ciclo, pois
+is a cycle, since
 
 $$
 \partial_1(e_{01}+e_{12}+e_{02})=0.
 $$
 
-Geometricamente, ela representa o contorno do triângulo.
+Geometrically, it represents the outline of the triangle.
 
 ---
 
-### 6. Calcule os bordos
+### 6. Compute the boundaries
 
-Os $k$-bordos são aqueles ciclos que são bordos de simplexos de dimensão $k+1$:
+The $k$-boundaries are the cycles that are boundaries of $(k+1)$-chains:
 
 $$
 \boxed{
@@ -246,7 +246,7 @@ B_k=\operatorname{im}\partial_{k+1}.
 }
 $$
 
-No exemplo,
+In the example,
 
 $$
 \partial_2[v_0,v_1,v_2]
@@ -254,7 +254,7 @@ $$
 e_{01}+e_{12}+e_{02}.
 $$
 
-Portanto,
+Therefore,
 
 $$
 B_1
@@ -265,7 +265,7 @@ e_{01}+e_{12}+e_{02}
 \}.
 $$
 
-Observe a propriedade fundamental:
+Note the fundamental property:
 
 $$
 \boxed{
@@ -273,19 +273,19 @@ $$
 }
 $$
 
-e, consequentemente,
+and, consequently,
 
 $$
 B_k\subseteq Z_k.
 $$
 
-Ou seja: **todo bordo é um ciclo**.
+In other words: **every boundary is a cycle**.
 
 ---
 
-### 7. Forme o grupo de homologia
+### 7. Form the homology group
 
-A homologia de dimensão $k$ é
+The $k$-dimensional homology is
 
 $$
 \boxed{
@@ -298,9 +298,9 @@ H_k(K;\mathbb F)
 }
 $$
 
-A ideia é identificar como triviais os ciclos que são bordos.
+The idea is to treat the cycles that are boundaries as trivial.
 
-No triângulo preenchido:
+For the filled triangle:
 
 $$
 Z_1
@@ -309,7 +309,7 @@ Z_1
 \{e_{01}+e_{12}+e_{02}\}.
 $$
 
-Mas também
+But also
 
 $$
 B_1
@@ -318,31 +318,31 @@ B_1
 \{e_{01}+e_{12}+e_{02}\}.
 $$
 
-Assim,
+Thus,
 
 $$
 H_1=Z_1/B_1=0.
 $$
 
-Embora exista um ciclo, ele é o bordo de um triângulo preenchido e, portanto, não representa um buraco.
+Although there is a cycle, it is the boundary of a filled triangle, so it does not represent a hole.
 
 ---
 
-### 8. Calcule os números de Betti
+### 8. Compute the Betti numbers
 
-Quando trabalhamos sobre um corpo,
+When working over a field,
 
 $$
 \beta_k=\dim H_k.
 $$
 
-Como
+Since
 
 $$
 H_k=\ker\partial_k/\operatorname{im}\partial_{k+1},
 $$
 
-temos
+we have
 
 $$
 \boxed{
@@ -354,7 +354,7 @@ $$
 }
 $$
 
-Usando rank-nullity,
+By rank–nullity,
 
 $$
 \dim\ker\partial_k
@@ -362,7 +362,7 @@ $$
 \dim C_k-\operatorname{rank}\partial_k,
 $$
 
-logo
+so
 
 $$
 \boxed{
@@ -376,9 +376,9 @@ n_k
 }
 $$
 
-onde $n_k$ é o número de $k$-simplexos.
+where $n_k$ is the number of $k$-simplices.
 
-Para o triângulo preenchido:
+For the filled triangle:
 
 $$
 \beta_0=1,
@@ -388,7 +388,7 @@ $$
 \beta_2=0.
 $$
 
-Portanto,
+Therefore,
 
 $$
 H_0\cong \mathbb F,
@@ -398,11 +398,11 @@ H_1=0,
 H_2=0.
 $$
 
-Topologicamente: há **uma componente conexa e nenhum buraco**.
+Topologically: there is **one connected component and no holes**.
 
 ---
 
-A cadeia de complexos fica resumida por
+The chain complex is summarized by
 
 $$
 \boxed{
@@ -418,7 +418,7 @@ C_0
 }
 $$
 
-e a homologia é calculada, em cada dimensão, por
+and homology is computed, in each dimension, as
 
 $$
 \boxed{
@@ -429,4 +429,4 @@ H_k
 }
 $$
 
-Esse é essencialmente todo o algoritmo: **enumerar simplexos $\rightarrow$ montar matrizes de bordo $\rightarrow$ calcular núcleos e imagens $\rightarrow$ formar o quociente**.
+That is essentially the whole algorithm: **enumerate simplices $\rightarrow$ assemble boundary matrices $\rightarrow$ compute kernels and images $\rightarrow$ form the quotient**.

@@ -40,14 +40,11 @@ func S2() {
 func T2() {
 	fmt.Println("=== Toro T² (triangulação mínima com 7 vértices) ===")
 	c := NewComplex()
-	// 7-vertex triangulation of the torus (Császár / Möbius–Kantor)
-	faces := [][3]int{
-		{0, 1, 2}, {0, 2, 3}, {0, 3, 4}, {0, 4, 5}, {0, 5, 6}, {0, 6, 1},
-		{1, 3, 6}, {1, 3, 4}, {1, 2, 4}, {2, 4, 6}, {2, 5, 6}, {2, 3, 5},
-		{3, 5, 6}, {1, 5, 4},
-	}
-	for _, f := range faces {
-		c.Add(NewSimplex(f[0], f[1], f[2]))
+	// Minimal 7-vertex triangulation of the torus (Möbius torus, realized by
+	// the Császár polyhedron): triangles {i, i+1, i+3} and {i, i+2, i+3} mod 7.
+	for i := 0; i < 7; i++ {
+		c.Add(NewSimplex(i, (i+1)%7, (i+3)%7))
+		c.Add(NewSimplex(i, (i+2)%7, (i+3)%7))
 	}
 	mostrarHomologia(c)
 }

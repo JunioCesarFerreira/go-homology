@@ -71,6 +71,12 @@ func ComputeHomology(c *SimplicialComplex) []HomologyGroup {
 			bNext := BoundaryMatrix(c, k+1)
 			inv := bNext.SmithNormalForm()
 			rankBoundaryNext = len(inv)
+			// the torsion of H_k comes from the invariant factors of ∂_{k+1} greater than 1
+			for _, v := range inv {
+				if v > 1 {
+					torsion = append(torsion, v)
+				}
+			}
 		}
 
 		// ∂_k: C_k → C_{k-1}
@@ -78,11 +84,6 @@ func ComputeHomology(c *SimplicialComplex) []HomologyGroup {
 			bk := BoundaryMatrix(c, k)
 			inv := bk.SmithNormalForm()
 			rankKm1 = len(inv)
-			for _, v := range inv {
-				if v > 1 {
-					torsion = append(torsion, v)
-				}
-			}
 		} else {
 			rankKm1 = 0
 		}
