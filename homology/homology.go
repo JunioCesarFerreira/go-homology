@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// HomologyGroup descreve H_k = ℤ^freeRank ⊕ (⊕ ℤ/torsion[i])
+// HomologyGroup describes H_k = ℤ^freeRank ⊕ (⊕ ℤ/torsion[i])
 type HomologyGroup struct {
 	Dim      int
 	FreeRank int
@@ -33,8 +33,8 @@ func (h HomologyGroup) String() string {
 	return s
 }
 
-// BoundaryMatrix constrói a matriz ∂_k : C_k → C_{k-1}
-// nas bases ordenadas dos grupos de cadeias.
+// BoundaryMatrix builds the matrix of ∂_k : C_k → C_{k-1}
+// with respect to the ordered bases of the chain groups.
 func BoundaryMatrix(c *SimplicialComplex, k int) *MatrixInt {
 	ck := c.ChainGroup(k)
 	ckm1 := c.ChainGroup(k - 1)
@@ -53,7 +53,7 @@ func BoundaryMatrix(c *SimplicialComplex, k int) *MatrixInt {
 	return m
 }
 
-// ComputeHomology calcula H_k para k = 0..maxDim.
+// ComputeHomology computes H_k for k = 0..maxDim.
 func ComputeHomology(c *SimplicialComplex) []HomologyGroup {
 	maxDim := c.MaxDim()
 	result := make([]HomologyGroup, maxDim+1)
@@ -62,7 +62,7 @@ func ComputeHomology(c *SimplicialComplex) []HomologyGroup {
 		var rankK, rankKm1 int
 		var torsion []int
 
-		// rank do grupo de cadeias C_k
+		// rank of the chain group C_k
 		rankK = len(c.ChainGroup(k))
 
 		// ∂_{k+1}: C_{k+1} → C_k

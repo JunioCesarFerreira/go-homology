@@ -1,6 +1,6 @@
 package main
 
-// MatrixInt é uma matriz com entradas inteiras.
+// MatrixInt is a matrix with integer entries.
 type MatrixInt struct {
 	Rows, Cols int
 	Data       [][]int
@@ -28,17 +28,17 @@ func gcd(a, b int) int {
 	return abs(a)
 }
 
-// SmithNormalForm calcula a forma normal de Smith da matriz.
-// Retorna a lista de divisores elementares (invariantes) não-nulos.
-// Realiza operações de linha e coluna sobre ℤ.
+// SmithNormalForm computes the Smith normal form of the matrix.
+// It returns the list of nonzero elementary divisors (invariant factors).
+// It performs row and column operations over ℤ.
 func (m *MatrixInt) SmithNormalForm() []int {
 	if m.Rows == 0 || m.Cols == 0 {
 		return nil
 	}
 
-	t := 0 // índice do pivô atual
+	t := 0 // current pivot index
 	for t < m.Rows && t < m.Cols {
-		// Encontra pivô não-nulo de menor valor absoluto no sub-bloco.
+		// Find the nonzero pivot with the smallest absolute value in the sub-block.
 		pivot := -1
 		pivotRow, pivotCol := -1, -1
 		best := 0
@@ -52,22 +52,22 @@ func (m *MatrixInt) SmithNormalForm() []int {
 			}
 		}
 		if best == 0 {
-			break // sub-bloco todo zero
+			break // the whole sub-block is zero
 		}
 		_ = pivot
 
-		// Move pivô para (t,t)
+		// Move the pivot to (t,t)
 		m.Data[t], m.Data[pivotRow] = m.Data[pivotRow], m.Data[t]
 		for i := 0; i < m.Rows; i++ {
 			m.Data[i][t], m.Data[i][pivotCol] = m.Data[i][pivotCol], m.Data[i][t]
 		}
 
-		// Limpa linha e coluna usando operações elementares.
+		// Clear the row and the column using elementary operations.
 		done := false
 		for !done {
 			done = true
 			p := m.Data[t][t]
-			// Zera a coluna t
+			// Clear column t
 			for i := t + 1; i < m.Rows; i++ {
 				if m.Data[i][t] != 0 {
 					q := m.Data[i][t] / p
@@ -75,7 +75,7 @@ func (m *MatrixInt) SmithNormalForm() []int {
 						m.Data[i][j] -= q * m.Data[t][j]
 					}
 					if m.Data[i][t] != 0 {
-						// resto não-zero: troca e continua
+						// nonzero remainder: swap and continue
 						m.Data[t], m.Data[i] = m.Data[i], m.Data[t]
 						done = false
 						break
@@ -85,7 +85,7 @@ func (m *MatrixInt) SmithNormalForm() []int {
 			if !done {
 				continue
 			}
-			// Zera a linha t
+			// Clear row t
 			for j := t + 1; j < m.Cols; j++ {
 				if m.Data[t][j] != 0 {
 					q := m.Data[t][j] / m.Data[t][t]
@@ -103,8 +103,8 @@ func (m *MatrixInt) SmithNormalForm() []int {
 			}
 		}
 
-		// Garante divisibilidade: se algum elemento do sub-bloco não é
-		// divisível pelo pivô, soma a linha correspondente à linha t.
+		// Ensure divisibility: if some entry of the sub-block is not
+		// divisible by the pivot, add its row to row t.
 		p := m.Data[t][t]
 		divisible := true
 		for i := t + 1; i < m.Rows && divisible; i++ {
@@ -126,7 +126,7 @@ func (m *MatrixInt) SmithNormalForm() []int {
 		t++
 	}
 
-	// Coleta invariantes (diagonal)
+	// Collect the invariants (diagonal)
 	var invariants []int
 	for i := 0; i < m.Rows && i < m.Cols; i++ {
 		if m.Data[i][i] != 0 {

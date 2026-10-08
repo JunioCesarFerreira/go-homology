@@ -5,21 +5,21 @@ import (
 	"sort"
 )
 
-// Simplex representa um k-simplex como um conjunto ordenado de vértices.
-// Ex: {0,1,2} é um 2-simplex (triângulo).
+// Simplex represents a k-simplex as an ordered set of vertices.
+// E.g. {0,1,2} is a 2-simplex (triangle).
 type Simplex struct {
 	Vertices []int
 	Dim      int
 }
 
-// NewSimplex cria um simplex normalizado (vértices ordenados, sem repetição).
+// NewSimplex creates a normalized simplex (sorted vertices, no repetitions).
 func NewSimplex(vertices ...int) Simplex {
-	// copia e ordena
+	// copy and sort
 	vs := make([]int, len(vertices))
 	copy(vs, vertices)
 	sort.Ints(vs)
 
-	// remove duplicatas
+	// remove duplicates
 	uniq := vs[:0]
 	for i, v := range vs {
 		if i == 0 || v != vs[i-1] {
@@ -30,13 +30,13 @@ func NewSimplex(vertices ...int) Simplex {
 	return Simplex{Vertices: uniq, Dim: len(uniq) - 1}
 }
 
-// Key retorna uma string canônica para usar como chave de mapa.
+// Key returns a canonical string to be used as a map key.
 func (s Simplex) Key() string {
 	return fmt.Sprint(s.Vertices)
 }
 
-// Faces retorna as (k-1)-faces do simplex, com sinal (+/-) alternado.
-// A i-ésima face é obtida removendo o i-ésimo vértice, com sinal (-1)^i.
+// Faces returns the (k-1)-faces of the simplex with alternating signs (+/-).
+// The i-th face is obtained by removing the i-th vertex, with sign (-1)^i.
 func (s Simplex) Faces() []BoundaryTerm {
 	faces := make([]BoundaryTerm, 0, len(s.Vertices))
 	for i := range s.Vertices {
@@ -57,7 +57,7 @@ func (s Simplex) Faces() []BoundaryTerm {
 	return faces
 }
 
-// BoundaryTerm é um simplex com coeficiente inteiro.
+// BoundaryTerm is a simplex with an integer coefficient.
 type BoundaryTerm struct {
 	Simplex Simplex
 	Coeff   int

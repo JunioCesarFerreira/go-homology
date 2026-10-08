@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-// SimplicialComplex é uma coleção de símplices fechada por faces.
+// SimplicialComplex is a collection of simplices closed under taking faces.
 type SimplicialComplex struct {
-	// Símplices agrupados por dimensão
+	// Simplices grouped by dimension
 	byDim map[int]map[string]Simplex
-	// Ordem canônica de cada dimensão (para indexar matrizes)
+	// Canonical order of each dimension (used to index matrices)
 	order  map[int][]Simplex
 	index  map[int]map[string]int
 	maxDim int
@@ -21,7 +21,7 @@ func NewComplex() *SimplicialComplex {
 	}
 }
 
-// Add insere um simplex e todas as suas faces (fechamento).
+// Add inserts a simplex and all of its faces (closure).
 func (c *SimplicialComplex) Add(s Simplex) {
 	if _, ok := c.byDim[s.Dim][s.Key()]; ok {
 		return
@@ -39,7 +39,7 @@ func (c *SimplicialComplex) Add(s Simplex) {
 		c.maxDim = s.Dim
 	}
 
-	// adiciona faces recursivamente
+	// recursively add the faces
 	for i := range s.Vertices {
 		faceVerts := append([]int{}, s.Vertices[:i]...)
 		faceVerts = append(faceVerts, s.Vertices[i+1:]...)
@@ -47,12 +47,12 @@ func (c *SimplicialComplex) Add(s Simplex) {
 	}
 }
 
-// ChainGroup retorna os símplices de dimensão k em ordem.
+// ChainGroup returns the simplices of dimension k in order.
 func (c *SimplicialComplex) ChainGroup(k int) []Simplex {
 	return c.order[k]
 }
 
-// Index retorna o índice de um simplex na base do grupo de cadeias.
+// Index returns the index of a simplex in the basis of its chain group.
 func (c *SimplicialComplex) Index(s Simplex) int {
 	m, ok := c.index[s.Dim]
 	if !ok {

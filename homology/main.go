@@ -3,11 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	S1()  // Círculo S¹ → H_0=Z, H_1=Z
-	D2()  // Disco sólido → H_0=Z
-	S2()  // Esfera S² → H_0=Z, H_2=Z
-	T2()  // Toro → H_0=Z, H_1=Z², H_2=Z
-	RP2() // Plano projetivo RP² → H_0=Z, H_1=Z/2
+	S1()  // Circle S¹ → H_0=Z, H_1=Z
+	D2()  // Solid disk → H_0=Z
+	S2()  // Sphere S² → H_0=Z, H_2=Z
+	T2()  // Torus → H_0=Z, H_1=Z², H_2=Z
+	RP2() // Projective plane RP² → H_0=Z, H_1=Z/2
 }
 
 func S1() {
@@ -29,7 +29,7 @@ func D2() {
 func S2() {
 	fmt.Println("=== Borda de um tetraedro (esfera S²) ===")
 	c := NewComplex()
-	// 4 faces do tetraedro
+	// the 4 faces of the tetrahedron
 	c.Add(NewSimplex(0, 1, 2))
 	c.Add(NewSimplex(0, 1, 3))
 	c.Add(NewSimplex(0, 2, 3))
@@ -40,7 +40,7 @@ func S2() {
 func T2() {
 	fmt.Println("=== Toro T² (triangulação mínima com 7 vértices) ===")
 	c := NewComplex()
-	// Triangulação do toro com 7 vértices (Császár / Möbius–Kantor)
+	// 7-vertex triangulation of the torus (Császár / Möbius–Kantor)
 	faces := [][3]int{
 		{0, 1, 2}, {0, 2, 3}, {0, 3, 4}, {0, 4, 5}, {0, 5, 6}, {0, 6, 1},
 		{1, 3, 6}, {1, 3, 4}, {1, 2, 4}, {2, 4, 6}, {2, 5, 6}, {2, 3, 5},
@@ -55,8 +55,8 @@ func T2() {
 func RP2() {
 	fmt.Println("=== Plano projetivo real RP² ===")
 	c := NewComplex()
-	// RP² = quociente da esfera por antipodal.
-	// Triangulação com 6 vértices (modelo icosaédrico reduzido).
+	// RP² = quotient of the sphere by the antipodal map.
+	// 6-vertex triangulation (hemi-icosahedron model).
 	faces := [][3]int{
 		{0, 1, 2}, {0, 1, 5}, {0, 2, 3}, {0, 3, 4}, {0, 4, 5},
 		{1, 2, 4}, {1, 3, 4}, {1, 3, 5}, {2, 3, 5}, {2, 4, 5},
