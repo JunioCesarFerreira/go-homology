@@ -85,13 +85,11 @@ $$
 Over $\mathbb Z$, the boundary of an oriented $k$-simplex is
 
 $$
-\boxed{
 \partial_k[v_0,\ldots,v_k]
 =
 \sum_{i=0}^{k}
 (-1)^i
 [v_0,\ldots,\widehat{v_i},\ldots,v_k]
-}
 $$
 
 where $\widehat{v_i}$ means that $v_i$ is omitted.
@@ -207,9 +205,7 @@ These matrices are the computational core of simplicial homology.
 The $k$-cycles are the chains with no boundary:
 
 $$
-\boxed{
 Z_k=\ker \partial_k
-}
 $$
 
 That is,
@@ -241,9 +237,7 @@ Geometrically, it represents the outline of the triangle.
 The $k$-boundaries are the cycles that are boundaries of $(k+1)$-chains:
 
 $$
-\boxed{
 B_k=\operatorname{im}\partial_{k+1}.
-}
 $$
 
 In the example,
@@ -268,9 +262,7 @@ $$
 Note the fundamental property:
 
 $$
-\boxed{
 \partial_k\circ\partial_{k+1}=0
-}
 $$
 
 and, consequently,
@@ -288,14 +280,12 @@ In other words: **every boundary is a cycle**.
 The $k$-dimensional homology is
 
 $$
-\boxed{
 H_k(K;\mathbb F)
 =
 \frac{Z_k}{B_k}
 =
 \frac{\ker\partial_k}
 {\operatorname{im}\partial_{k+1}}.
-}
 $$
 
 The idea is to treat the cycles that are boundaries as trivial.
@@ -345,13 +335,11 @@ $$
 we have
 
 $$
-\boxed{
 \beta_k
 =
 \dim\ker\partial_k
 -
 \dim\operatorname{im}\partial_{k+1}.
-}
 $$
 
 By rank–nullity,
@@ -365,7 +353,6 @@ $$
 so
 
 $$
-\boxed{
 \beta_k
 =
 n_k
@@ -373,7 +360,6 @@ n_k
 \operatorname{rank}\partial_k
 -
 \operatorname{rank}\partial_{k+1}
-}
 $$
 
 where $n_k$ is the number of $k$-simplices.
@@ -405,7 +391,6 @@ Topologically: there is **one connected component and no holes**.
 The chain complex is summarized by
 
 $$
-\boxed{
 \cdots
 \longrightarrow
 C_2
@@ -415,18 +400,15 @@ C_1
 C_0
 \xrightarrow{\partial_0}
 0
-}
 $$
 
 and homology is computed, in each dimension, as
 
 $$
-\boxed{
 H_k
 =
 \frac{\ker\partial_k}
 {\operatorname{im}\partial_{k+1}}.
-}
 $$
 
 That is essentially the whole algorithm: **enumerate simplices $\rightarrow$ assemble boundary matrices $\rightarrow$ compute kernels and images $\rightarrow$ form the quotient**.

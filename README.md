@@ -21,7 +21,7 @@ cd homology
 go run .
 ```
 
-The program computes the homology of the complexes defined in [homology/main.go](homology/main.go). For each one it prints the simplices grouped by dimension, followed by the homology groups:
+The program computes the homology of the complexes defined in [homology/main.go](homology/main.go). For each one it prints the simplices grouped by dimension, the homology groups and the Betti numbers:
 
 ```text
 === Borda de um triângulo (S¹) ===
@@ -31,9 +31,10 @@ Dimensão 1: [[0 1] [1 2] [0 2]]
 Grupos de homologia:
   H_0 = Z
   H_1 = Z
+Números de Betti: [1 1]
 ```
 
-Groups are printed as direct sums: `Z^2 + Z/2` means $\mathbb{Z}^2 \oplus \mathbb{Z}/2$, and `0` is the trivial group.
+Groups are printed as direct sums: `Z^2 + Z/2` means $\mathbb{Z}^2 \oplus \mathbb{Z}/2$, and `0` is the trivial group. The Betti numbers are listed as $[\beta_0, \beta_1, \dots]$, where $\beta_k = \text{rank } H_k$ ignores torsion: the projective plane prints `[1 0 0]` even though $H_1 = \mathbb{Z}/2$.
 
 ## Usage
 

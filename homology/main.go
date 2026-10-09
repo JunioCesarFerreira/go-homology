@@ -94,8 +94,12 @@ func mostrarHomologia(c *SimplicialComplex) {
 
 	hom := ComputeHomology(c)
 	fmt.Println("Grupos de homologia:")
-	for _, h := range hom {
+	betti := make([]int, len(hom))
+	for k, h := range hom {
 		fmt.Printf("  H_%d = %s\n", h.Dim, h)
+		betti[k] = h.FreeRank
 	}
+	// β_k = rank H_k, indexed by k
+	fmt.Println("Números de Betti:", betti)
 	fmt.Println()
 }
