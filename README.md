@@ -24,14 +24,14 @@ go run .
 The program computes the homology of the complexes defined in [homology/main.go](homology/main.go). For each one it prints the simplices grouped by dimension, the homology groups and the Betti numbers:
 
 ```text
-=== Borda de um triângulo (S¹) ===
-Complexo:
-Dimensão 0: [[1] [0] [2]]
-Dimensão 1: [[0 1] [1 2] [0 2]]
-Grupos de homologia:
+=== Boundary of a triangle (S¹) ===
+Complex:
+Dimension 0: [[1] [0] [2]]
+Dimension 1: [[0 1] [1 2] [0 2]]
+Homology groups:
   H_0 = Z
   H_1 = Z
-Números de Betti: [1 1]
+Betti numbers: [1 1]
 ```
 
 Groups are printed as direct sums: `Z^2 + Z/2` means $\mathbb{Z}^2 \oplus \mathbb{Z}/2$, and `0` is the trivial group. The Betti numbers are listed as $[\beta_0, \beta_1, \dots]$, where $\beta_k = \text{rank } H_k$ ignores torsion: the projective plane prints `[1 0 0]` even though $H_1 = \mathbb{Z}/2$.
@@ -262,6 +262,74 @@ The expected homology of the complexes in [homology/main.go](homology/main.go):
 | Torus $T^2$ | `T2` | 7 | 21 | 14 | 0 | $\mathbb{Z}$ | $\mathbb{Z}^2$ | $\mathbb{Z}$ |
 | Projective plane $\mathbb{RP}^2$ | `RP2` | 6 | 15 | 10 | 1 | $\mathbb{Z}$ | $\mathbb{Z}/2$ | $0$ |
 | Klein bottle | `Klein` | 9 | 27 | 18 | 0 | $\mathbb{Z}$ | $\mathbb{Z} \oplus \mathbb{Z}/2$ | $0$ |
+
+## Execution results
+
+```
+=== Boundary of a triangle (S¹) ===
+Complex:
+Dimension 0: [[1] [0] [2]]
+Dimension 1: [[0 1] [1 2] [0 2]]
+Homology groups:
+  H_0 = Z
+  H_1 = Z
+Betti numbers: [1 1]
+
+=== Filled triangle (disk D²) ===
+Complex:
+Dimension 0: [[2] [1] [0]]
+Dimension 1: [[1 2] [0 2] [0 1]]
+Dimension 2: [[0 1 2]]
+Homology groups:
+  H_0 = Z
+  H_1 = 0
+  H_2 = 0
+Betti numbers: [1 0 0]
+
+=== Boundary of a tetrahedron (sphere S²) ===
+Complex:
+Dimension 0: [[2] [1] [0] [3]]
+Dimension 1: [[1 2] [0 2] [0 1] [1 3] [0 3] [2 3]]
+Dimension 2: [[0 1 2] [0 1 3] [0 2 3] [1 2 3]]
+Homology groups:
+  H_0 = Z
+  H_1 = 0
+  H_2 = Z
+Betti numbers: [1 0 1]
+
+=== Torus T² (minimal 7-vertex triangulation) ===
+Complex:
+Dimension 0: [[3] [1] [0] [2] [4] [5] [6]]
+Dimension 1: [[1 3] [0 3] [0 1] [2 3] [0 2] [2 4] [1 4] [1 2] [3 4] [3 5] [2 5] [4 5] [4 6] [3 6] [5 6] [0 5] [0 4] [0 6] [1 6] [1 5] [2 6]]
+Dimension 2: [[0 1 3] [0 2 3] [1 2 4] [1 3 4] [2 3 5] [2 4 5] [3 4 6] [3 5 6] [0 4 5] [0 4 6] [1 5 6] [0 1 5] [0 2 6] [1 2 6]]
+Homology groups:
+  H_0 = Z
+  H_1 = Z^2
+  H_2 = Z
+Betti numbers: [1 2 1]
+
+=== Real projective plane RP² ===
+Complex:
+Dimension 0: [[2] [1] [0] [5] [3] [4]]
+Dimension 1: [[1 2] [0 2] [0 1] [1 5] [0 5] [2 3] [0 3] [3 4] [0 4] [4 5] [2 4] [1 4] [1 3] [3 5] [2 5]]
+Dimension 2: [[0 1 2] [0 1 5] [0 2 3] [0 3 4] [0 4 5] [1 2 4] [1 3 4] [1 3 5] [2 3 5] [2 4 5]]
+Homology groups:
+  H_0 = Z
+  H_1 = Z/2
+  H_2 = 0
+Betti numbers: [1 0 0]
+
+=== Klein bottle (9-vertex triangulation) ===
+Complex:
+Dimension 0: [[4] [3] [0] [1] [5] [2] [7] [6] [8]]
+Dimension 1: [[3 4] [0 4] [0 3] [1 4] [0 1] [4 5] [1 5] [2 5] [1 2] [3 5] [2 3] [0 2] [6 7] [3 7] [3 6] [4 7] [7 8] [4 8] [5 8] [6 8] [5 6] [2 6] [0 6] [2 7] [1 7] [1 8] [0 8]]
+Dimension 2: [[0 3 4] [0 1 4] [1 4 5] [1 2 5] [2 3 5] [0 2 3] [3 6 7] [3 4 7] [4 7 8] [4 5 8] [5 6 8] [3 5 6] [0 2 6] [2 6 7] [1 2 7] [1 7 8] [0 1 8] [0 6 8]]
+Homology groups:
+  H_0 = Z
+  H_1 = Z + Z/2
+  H_2 = 0
+Betti numbers: [1 1 0]
+```
 
 ## Limitations
 

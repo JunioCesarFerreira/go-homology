@@ -12,7 +12,7 @@ func main() {
 }
 
 func S1() {
-	fmt.Println("=== Borda de um triângulo (S¹) ===")
+	fmt.Println("=== Boundary of a triangle (S¹) ===")
 	c := NewComplex()
 	c.Add(NewSimplex(0, 1))
 	c.Add(NewSimplex(1, 2))
@@ -21,14 +21,14 @@ func S1() {
 }
 
 func D2() {
-	fmt.Println("=== Triângulo cheio (disco D²) ===")
+	fmt.Println("=== Filled triangle (disk D²) ===")
 	c := NewComplex()
 	c.Add(NewSimplex(0, 1, 2))
 	mostrarHomologia(c)
 }
 
 func S2() {
-	fmt.Println("=== Borda de um tetraedro (esfera S²) ===")
+	fmt.Println("=== Boundary of a tetrahedron (sphere S²) ===")
 	c := NewComplex()
 	// the 4 faces of the tetrahedron
 	c.Add(NewSimplex(0, 1, 2))
@@ -39,7 +39,7 @@ func S2() {
 }
 
 func T2() {
-	fmt.Println("=== Toro T² (triangulação mínima com 7 vértices) ===")
+	fmt.Println("=== Torus T² (minimal 7-vertex triangulation) ===")
 	c := NewComplex()
 	// Minimal 7-vertex triangulation of the torus (Möbius torus, realized by
 	// the Császár polyhedron): triangles {i, i+1, i+3} and {i, i+2, i+3} mod 7.
@@ -51,7 +51,7 @@ func T2() {
 }
 
 func RP2() {
-	fmt.Println("=== Plano projetivo real RP² ===")
+	fmt.Println("=== Real projective plane RP² ===")
 	c := NewComplex()
 	// RP² = quotient of the sphere by the antipodal map.
 	// 6-vertex triangulation (hemi-icosahedron model).
@@ -66,7 +66,7 @@ func RP2() {
 }
 
 func Klein() {
-	fmt.Println("=== Garrafa de Klein (triangulação com 9 vértices) ===")
+	fmt.Println("=== Klein bottle (9-vertex triangulation) ===")
 	c := NewComplex()
 	// The Klein bottle is the square [0,3]×[0,3] with the bottom and top sides
 	// glued directly, (i, 3) ~ (i, 0), and the left and right sides glued with
@@ -89,17 +89,17 @@ func Klein() {
 }
 
 func mostrarHomologia(c *SimplicialComplex) {
-	fmt.Println("Complexo:")
+	fmt.Println("Complex:")
 	fmt.Print(c.String())
 
 	hom := ComputeHomology(c)
-	fmt.Println("Grupos de homologia:")
+	fmt.Println("Homology groups:")
 	betti := make([]int, len(hom))
 	for k, h := range hom {
 		fmt.Printf("  H_%d = %s\n", h.Dim, h)
 		betti[k] = h.FreeRank
 	}
 	// β_k = rank H_k, indexed by k
-	fmt.Println("Números de Betti:", betti)
+	fmt.Println("Betti numbers:", betti)
 	fmt.Println()
 }

@@ -70,7 +70,7 @@ func (c *SimplicialComplex) MaxDim() int { return c.maxDim }
 func (c *SimplicialComplex) String() string {
 	s := ""
 	for k := 0; k <= c.maxDim; k++ {
-		s += fmt.Sprintf("Dimensão %d: %v\n", k, c.order[k])
+		s += fmt.Sprintf("Dimension %d: %v\n", k, c.order[k])
 	}
 	return s
 }

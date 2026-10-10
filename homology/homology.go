@@ -45,7 +45,7 @@ func BoundaryMatrix(c *SimplicialComplex, k int) *MatrixInt {
 		for _, term := range s.Faces() {
 			i := c.Index(term.Simplex)
 			if i < 0 {
-				panic(fmt.Sprintf("face %v não encontrada no complexo", term.Simplex))
+				panic(fmt.Sprintf("face %v not found in the complex", term.Simplex))
 			}
 			m.Data[i][j] += term.Coeff
 		}
