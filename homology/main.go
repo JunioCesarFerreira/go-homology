@@ -17,14 +17,14 @@ func S1() {
 	c.Add(NewSimplex(0, 1))
 	c.Add(NewSimplex(1, 2))
 	c.Add(NewSimplex(2, 0))
-	mostrarHomologia(c)
+	printHomology(c)
 }
 
 func D2() {
 	fmt.Println("=== Filled triangle (disk D²) ===")
 	c := NewComplex()
 	c.Add(NewSimplex(0, 1, 2))
-	mostrarHomologia(c)
+	printHomology(c)
 }
 
 func S2() {
@@ -35,7 +35,7 @@ func S2() {
 	c.Add(NewSimplex(0, 1, 3))
 	c.Add(NewSimplex(0, 2, 3))
 	c.Add(NewSimplex(1, 2, 3))
-	mostrarHomologia(c)
+	printHomology(c)
 }
 
 func T2() {
@@ -47,7 +47,7 @@ func T2() {
 		c.Add(NewSimplex(i, (i+1)%7, (i+3)%7))
 		c.Add(NewSimplex(i, (i+2)%7, (i+3)%7))
 	}
-	mostrarHomologia(c)
+	printHomology(c)
 }
 
 func RP2() {
@@ -62,7 +62,7 @@ func RP2() {
 	for _, f := range faces {
 		c.Add(NewSimplex(f[0], f[1], f[2]))
 	}
-	mostrarHomologia(c)
+	printHomology(c)
 }
 
 func Klein() {
@@ -85,10 +85,10 @@ func Klein() {
 			c.Add(NewSimplex(v(i, j), v(i, j+1), v(i+1, j+1)))
 		}
 	}
-	mostrarHomologia(c)
+	printHomology(c)
 }
 
-func mostrarHomologia(c *SimplicialComplex) {
+func printHomology(c *SimplicialComplex) {
 	fmt.Println("Complex:")
 	fmt.Print(c.String())
 
