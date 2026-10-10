@@ -45,7 +45,7 @@ as the vector space spanned by the $k$-simplices.
 If we work over a field $\mathbb F$, for example $\mathbb F_2$,
 
 $$
-C_k(K;\mathbb F_2) = \operatorname{span}_{\mathbb F_2}(K_k).
+C_k(K;\mathbb F_2) = \text{span}_{\mathbb F_2}(K_k).
 $$
 
 In the example:
@@ -191,7 +191,7 @@ Geometrically, it represents the outline of the triangle.
 The $k$-boundaries are the cycles that are boundaries of $(k+1)$-chains:
 
 $$
-B_k = \operatorname{im} \partial_{k+1}.
+B_k = \text{im} \partial_{k+1}.
 $$
 
 In the example,
@@ -203,7 +203,7 @@ $$
 Therefore,
 
 $$
-B_1 = \operatorname{span} \lbrace e_{01} + e_{12} + e_{02} \rbrace.
+B_1 = \text{span} \lbrace e_{01} + e_{12} + e_{02} \rbrace.
 $$
 
 Note the fundamental property:
@@ -227,7 +227,7 @@ In other words: **every boundary is a cycle**.
 The $k$-dimensional homology is
 
 $$
-H_k(K;\mathbb F) = \frac{Z_k}{B_k} = \frac{\ker \partial_k}{\operatorname{im} \partial_{k+1}}.
+H_k(K;\mathbb F) = \frac{Z_k}{B_k} = \frac{\ker \partial_k}{\text{im} \partial_{k+1}}.
 $$
 
 The idea is to treat the cycles that are boundaries as trivial.
@@ -235,13 +235,13 @@ The idea is to treat the cycles that are boundaries as trivial.
 For the filled triangle:
 
 $$
-Z_1 = \operatorname{span} \lbrace e_{01} + e_{12} + e_{02} \rbrace.
+Z_1 = \text{span} \lbrace e_{01} + e_{12} + e_{02} \rbrace.
 $$
 
 But also
 
 $$
-B_1 = \operatorname{span} \lbrace e_{01} + e_{12} + e_{02} \rbrace.
+B_1 = \text{span} \lbrace e_{01} + e_{12} + e_{02} \rbrace.
 $$
 
 Thus,
@@ -265,25 +265,25 @@ $$
 Since
 
 $$
-H_k = \ker \partial_k / \operatorname{im} \partial_{k+1},
+H_k = \ker \partial_k / \text{im} \partial_{k+1},
 $$
 
 we have
 
 $$
-\beta_k = \dim \ker \partial_k - \dim \operatorname{im} \partial_{k+1}.
+\beta_k = \dim \ker \partial_k - \dim \text{im} \partial_{k+1}.
 $$
 
 By rank–nullity,
 
 $$
-\dim \ker \partial_k = \dim C_k - \operatorname{rank} \partial_k,
+\dim \ker \partial_k = \dim C_k - \text{rank} \partial_k,
 $$
 
 so
 
 $$
-\beta_k = n_k - \operatorname{rank} \partial_k - \operatorname{rank} \partial_{k+1}
+\beta_k = n_k - \text{rank} \partial_k - \text{rank} \partial_{k+1}
 $$
 
 where $n_k$ is the number of $k$-simplices.
@@ -313,7 +313,7 @@ $$
 and homology is computed, in each dimension, as
 
 $$
-H_k = \frac{\ker \partial_k}{\operatorname{im} \partial_{k+1}}.
+H_k = \frac{\ker \partial_k}{\text{im} \partial_{k+1}}.
 $$
 
 That is essentially the whole algorithm: **enumerate simplices $\rightarrow$ assemble boundary matrices $\rightarrow$ compute kernels and images $\rightarrow$ form the quotient**.
